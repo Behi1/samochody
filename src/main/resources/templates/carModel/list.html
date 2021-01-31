@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-
+Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>Your Car Models <span th:if="${filter} != null" th:text="'filtered by ' + ${filter}"></span></title>
+</head>
+<body>
+<div class="panel-heading">
+    <h2 class="panel-title">Car Models</h2>
+</div>
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+            <th>modelName</th>
+            <th>Concern</th>
+            <th>YearProduced</th>
+            <th>Actions</th>
+            </thead>
+            <tr th:each="carModel : ${carModels}">
+                <td th:text="${carModel.modelName}">A great pretender</td>
+                <td th:text="${carModel.concern.name}">EMI</td>
+                <td th:text="${carModel.yearProduced}">1998</td>
+                <td>
+                    <a href="#" th:href="@{'/carModel/' + ${carModel.id} + '/show'}" style="margin-right: 5px;">View</a>
+                    <a href="#" th:href="@{'/carModel/' + ${carModel.id} + '/engineTypes'}" style="margin-right: 5px;">Engine Types</a>
+                    <a href="#" th:href="@{'/carModel/' + ${carModel.id} + '/delete'}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-5">
+        <div>
+            <a href="#" th:href="@{'/'}" role="button" class="btn btn-warning">Back to menu</a>
+            <a href="#" th:href="@{'/carModel/new'}" role="button" class="btn btn-success">Add</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
